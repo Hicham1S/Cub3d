@@ -6,7 +6,7 @@
 /*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:49:11 by mjamil            #+#    #+#             */
-/*   Updated: 2025/04/12 14:26:17 by mjamil           ###   ########.fr       */
+/*   Updated: 2025/04/12 15:19:09 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,3 @@ char **read_file_line(char *file)
 	return (lines);
 }
 
-int main(void)
-{
-	char **lines;
-	int i = 0;
-
-	lines = read_file_line("map.txt");
-	if (!lines)
-	{
-		printf("Error reading file.\n");
-		return (1);
-	}
-
-	while (lines[i])
-	{
-		printf("Line %d: %s", i, lines[i]);
-		free(lines[i]);
-		i++;
-	}
-	free(lines);
-	return 0;
-}

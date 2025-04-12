@@ -6,7 +6,7 @@
 /*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:06:56 by mjamil            #+#    #+#             */
-/*   Updated: 2025/04/12 14:16:09 by mjamil           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:49:27 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+#include <string.h>
 
 // === Keycodes ===
 # define ESC         65307
@@ -62,6 +63,14 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
+typedef struct s_player {
+    double x;       // position x
+    double y;       // position y
+    double dir_x;   // direction vector x
+    double dir_y;   // direction vector y
+    double plane_x; // camera plane x (for FOV)
+    double plane_y; // camera plane y
+} t_player;
 
 typedef struct s_config
 {
@@ -72,14 +81,7 @@ typedef struct s_config
 	t_player	player;
 }	t_config;
 
-typedef struct s_player {
-    double x;       // position x
-    double y;       // position y
-    double dir_x;   // direction vector x
-    double dir_y;   // direction vector y
-    double plane_x; // camera plane x (for FOV)
-    double plane_y; // camera plane y
-} t_player;
+
 
 typedef struct s_ray {
     double ray_dir_x;
@@ -93,12 +95,19 @@ typedef struct s_ray {
     double perp_wall_dist;
     int step_x;
     int step_y;
-    int hit;        // was a wall hit?
-    int side;       // vertical or horizontal
+    int hit;
+    int side;
 } t_ray;
 
 
 
 char **read_file_line(char *file);
+void parse_header(t_config *config, char **lines);
+void error_exit(const char *msg);
+char *trim_line(char *line);
+void parse_map(t_config *scene, char **lines, int start_index);
+char *extract_value(char *line, char *prefix);
+int is_map_line(char *line);
+int is_empty_line(char *line);
 
 #endif

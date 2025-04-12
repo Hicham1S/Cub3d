@@ -62,12 +62,6 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
-typedef struct s_player
-{
-	int		x;
-	int		y;
-	char	direction; // N, S, E, W
-}	t_player;
 
 typedef struct s_config
 {
@@ -77,6 +71,31 @@ typedef struct s_config
 	t_map		map;
 	t_player	player;
 }	t_config;
+
+typedef struct s_player {
+    double x;       // position x
+    double y;       // position y
+    double dir_x;   // direction vector x
+    double dir_y;   // direction vector y
+    double plane_x; // camera plane x (for FOV)
+    double plane_y; // camera plane y
+} t_player;
+
+typedef struct s_ray {
+    double ray_dir_x;
+    double ray_dir_y;
+    int map_x;
+    int map_y;
+    double side_dist_x;
+    double side_dist_y;
+    double delta_dist_x;
+    double delta_dist_y;
+    double perp_wall_dist;
+    int step_x;
+    int step_y;
+    int hit;        // was a wall hit?
+    int side;       // vertical or horizontal
+} t_ray;
 
 
 

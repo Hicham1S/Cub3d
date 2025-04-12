@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dawwad <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 14:20:51 by dawwad            #+#    #+#             */
-/*   Updated: 2024/06/13 14:20:54 by dawwad           ###   ########.fr       */
+/*   Created: 2024/06/10 12:53:11 by mjamil            #+#    #+#             */
+/*   Updated: 2025/01/23 13:52:53 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int x)
+int	ft_tolower(int c)
 {
-	if (x >= 'A' && x <= 'Z')
-		x += 32;
-	return (x);
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:53:11 by mjamil            #+#    #+#             */
-/*   Updated: 2025/01/23 13:51:36 by mjamil           ###   ########.fr       */
+/*   Updated: 2025/01/23 13:53:06 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
-{
-	unsigned char	*p1;
-	unsigned char	*p2;
-	size_t			i;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 8192
+# endif
 
-	if (n == 0)
-		return (0);
-	p1 = (unsigned char *)s1;
-	p2 = (unsigned char *)s2;
-	i = 0;
-	while (p1[i] == p2[i] && i < n - 1)
-		i++;
-	return (p1[i] - p2[i]);
-}
+# include <unistd.h>
+# include <stdlib.h>
+
+char	*get_next_line(int fd);
+
+char	*ft_strdup_gnl(char *str);
+char	*get_after_newline(char *str);
+char	*get_before_newline(char *str);
+char	*parse_line(char **buffer, char **temp);
+
+void	read_line(int fd, char **buffer, char **temp);
+void	free_strs(char **str1, char **str2, char **str3);
+
+int		newline_reached(char *str);
+int		ft_strlen_gnl(char *str, char stop);
+#endif

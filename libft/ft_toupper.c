@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dawwad <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 14:55:37 by dawwad            #+#    #+#             */
-/*   Updated: 2024/06/11 14:55:39 by dawwad           ###   ########.fr       */
+/*   Created: 2024/06/10 12:53:11 by mjamil            #+#    #+#             */
+/*   Updated: 2025/01/23 13:52:56 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int x)
+int	ft_toupper(int c)
 {
-	if (x >= 'a' && x <= 'z')
-		x -= 32;
-	return (x);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

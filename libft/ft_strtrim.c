@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dawwad <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 18:22:21 by dawwad            #+#    #+#             */
-/*   Updated: 2024/06/19 18:22:50 by dawwad           ###   ########.fr       */
+/*   Created: 2024/06/10 12:53:11 by mjamil            #+#    #+#             */
+/*   Updated: 2025/01/23 13:52:47 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	checkset(const char c, const char *set)
+static int	in_set(char c, char const *set)
 {
 	int	i;
 
@@ -26,36 +26,30 @@ int	checkset(const char c, const char *set)
 	return (0);
 }
 
-char	*ft_strncpy(char *dest, const char *src, unsigned int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < n && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t		i;
-	size_t		j;
-	char		*str;
+	char	*res;
+	int		start;
+	int		end;
+	int		i;
 
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return ((char *)s1);
+	start = 0;
+	while (s1[start] && in_set(s1[start], set))
+		start++;
+	end = ft_strlen(s1) - 1;
+	if (start == end + 1)
+		return (ft_strdup(""));
+	while (s1[end] && in_set(s1[end], set))
+		end--;
+	res = (char *)ft_calloc(end - start + 2, sizeof(char));
+	if (!res)
+		return (NULL);
 	i = 0;
-	j = ft_strlen(s1);
-	while (checkset(s1[i], set))
-		i++;
-	while (checkset(s1[j - 1], set))
-		j--;
-	str = ft_substr(s1, i, j - i);
-	return (str);
+	while (start <= end)
+		res[i++] = s1[start++];
+	return (res);
 }

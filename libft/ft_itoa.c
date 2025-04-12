@@ -3,50 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dawwad <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 18:06:22 by dawwad            #+#    #+#             */
-/*   Updated: 2024/06/19 18:06:26 by dawwad           ###   ########.fr       */
+/*   Created: 2024/06/10 12:53:11 by mjamil            #+#    #+#             */
+/*   Updated: 2025/01/23 13:51:24 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int	numlen(int n)
+static int	num_len(int nb)
 {
-	int	i;
+	int	len;
+
+	len = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+	{
+		len++;
+		nb *= -1;
+	}
+	while (nb)
+	{
+		len++;
+		nb /= 10;
+	}
+	return (len);
+}
+
+static void	ft_strrev(char *str)
+{
+	char	tmp;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (n <= 0)
-		i++;
-	while (n)
+	j = ft_strlen(str) - 1;
+	while (i < j)
 	{
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
 		i++;
-		n /= 10;
+		j--;
 	}
-	return (i);
+}
+
+static int	ft_abs(int n)
+{
+	if (n < 0)
+		n *= -1;
+	return (n);
 }
 
 char	*ft_itoa(int n)
 {
-	char			*str;
-	size_t			len;
-	unsigned int	num;
+	char	*nbstr;
+	int		nb;
+	size_t	i;
 
-	num = n;
-	len = numlen(n);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	nbstr = malloc((num_len(n) + 1) * sizeof(char));
+	if (!nbstr)
 		return (NULL);
-	if (n < 0)
-		num = -n;
-	str[len] = '\0';
-	while (len--)
+	nb = ft_abs(n);
+	i = 0;
+	while (nb)
 	{
-		str[len] = num % 10 + '0';
-		num /= 10;
+		nbstr[i++] = (nb % 10) + '0';
+		nb /= 10;
 	}
 	if (n < 0)
-		str[0] = '-';
-	return (str);
+		nbstr[i++] = '-';
+	nbstr[i] = '\0';
+	ft_strrev(nbstr);
+	return (nbstr);
 }

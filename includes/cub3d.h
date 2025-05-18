@@ -15,7 +15,7 @@
 
 //=== Includes ------------------------------------------------------------===//
 
-# include "../libft/libft.h"
+# include "../libft/inc/libft.h"
 # include "../minilibx-linux/mlx.h"
 //# include "./get_next_line/get_next_line.h"
 # include <fcntl.h>
@@ -251,13 +251,6 @@ typedef struct s_map_params // Specific struct helping for map parsing
 	t_cub_data	*cub_data;
 }							t_map_params;
 
-typedef struct s_bresenham
-{
-	int						dx_dy[2];
-	int						sx_sy[2];
-	int						err;
-	int						e2;
-}							t_bresenham;
 
 //=== Parsing -------------------------------------------------------------===//
 

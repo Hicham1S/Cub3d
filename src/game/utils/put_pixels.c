@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixels.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsarraj <hsarraj@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 18:07:41 by hsarraj           #+#    #+#             */
-/*   Updated: 2025/05/18 18:07:47 by hsarraj          ###   ########.fr       */
+/*   Updated: 2025/05/18 21:44:28 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,44 @@ int	get_sx_sy(int var1, int var2)
 	return (-1);
 }
 
+void	init_bresenham(t_bresenham *v, int start[2], int end[2])
+{
+	v->x = start[0];
+	v->y = start[1];
+	v->dx_dy[0] = ft_abs(end[0] - start[0]);
+	v->dx_dy[1] = -ft_abs(end[1] - start[1]);
+	if (start[0] < end[0])
+		v->sx_sy[0] = 1;
+	else
+		v->sx_sy[0] = -1;
+	if (start[1] < end[1])
+		v->sx_sy[1] = 1;
+	else
+		v->sx_sy[1] = -1;
+	v->err = v->dx_dy[0] + v->dx_dy[1];
+}
+
 void	plot_line_bresenham(t_cub_data *data, int start[2], int end[2])
 {
 	t_bresenham	var;
 
-	var.dx_dy[0] = ft_abs(end[0] - start[0]);
-	var.dx_dy[1] = -ft_abs(end[1] - start[1]);
-	var.sx_sy[0] = (start[0] < end[0]) ? 1 : -1;
-	var.sx_sy[1] = (start[1] < end[1]) ? 1 : -1;
-	var.err = var.dx_dy[0] + var.dx_dy[1];
-	
-	while (start[0] != end[0] || start[1] != end[1])
+	init_bresenham(&var, start, end);
+	while (var.x != end[0] || var.y != end[1])
 	{
-		cub_draw_pixel(data, start[0], start[1], RED);
+		cub_draw_pixel(data, var.x, var.y, RED);
 		var.e2 = 2 * var.err;
 		if (var.e2 >= var.dx_dy[1])
 		{
 			var.err += var.dx_dy[1];
-			start[0] += var.sx_sy[0];
+			var.x += var.sx_sy[0];
 		}
 		if (var.e2 <= var.dx_dy[0])
 		{
 			var.err += var.dx_dy[0];
-			start[1] += var.sx_sy[1];
+			var.y += var.sx_sy[1];
 		}
 	}
 	cub_draw_pixel(data, end[0], end[1], RED);
-	
 }
 
 void	cub_draw_pixel(t_cub_data *data, int x, int y, int color)

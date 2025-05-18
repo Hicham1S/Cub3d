@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsarraj <hsarraj@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 18:06:44 by hsarraj           #+#    #+#             */
-/*   Updated: 2025/05/18 18:07:06 by hsarraj          ###   ########.fr       */
+/*   Updated: 2025/05/18 21:45:52 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 void	draw_elem(t_cub_data *data, int i[2], int color, float offset[2])
 {
-	int		x;
-	int		y;
-	int		start_x;
-	int		start_y;
-	int		end_x;
-	int		end_y;
+	int	start[2];
+	int	end[2];
+	int	x;
+	int	y;
 
-	start_x = (i[1] - offset[0]) * data->utils.minimap.cell_width;
-	start_y = (i[0] - offset[1]) * data->utils.minimap.cell_height;
-	end_x = start_x + data->utils.minimap.cell_width;
-	end_y = start_y + data->utils.minimap.cell_height;
-	y = start_y;
-	while (y <= end_y)
+	start[0] = (i[1] - offset[0]) * data->utils.minimap.cell_width;
+	start[1] = (i[0] - offset[1]) * data->utils.minimap.cell_height;
+	end[0] = start[0] + data->utils.minimap.cell_width;
+	end[1] = start[1] + data->utils.minimap.cell_height;
+	y = start[1];
+	while (y <= end[1])
 	{
-		x = start_x;
-		while (x <= end_x)
+		x = start[0];
+		while (x <= end[0])
 			fill_cell(data, x++, y, color);
 		y++;
 	}

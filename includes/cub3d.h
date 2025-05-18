@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsarraj <hsarraj@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 18:08:59 by hsarraj           #+#    #+#             */
-/*   Updated: 2025/05/18 18:11:11 by hsarraj          ###   ########.fr       */
+/*   Updated: 2025/05/18 21:49:40 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@
 # define STRAFE_SPEED 0.1f
 # define PLAYER_SPEED 0.08f
 # define HIT_BOX 0.2f
+
+typedef struct s_bresenham
+{
+	int	dx_dy[2];
+	int	sx_sy[2];
+	int	err;
+	int	e2;
+	int	x;
+	int	y;
+}				t_bresenham;
 
 //=== Textures ------------------------------------------------------------===//
 # define FRAME "./textures/minimap_frame.xpm"
@@ -199,7 +209,7 @@ typedef struct s_walls
 
 typedef struct s_ray_cast
 {
-	int column; // the pixel column we are casting the ray on
+	int						column;
 	float					ray_angle;
 	float					ray_dir_x;
 	float					ray_dir_y;
@@ -211,7 +221,7 @@ typedef struct s_ray_cast
 	float					side_dist_y;
 	int						step_x;
 	int						step_y;
-	int side; // side of the wall hit 0 = vertical line, 1 = horizontal line
+	int						side;
 	float					raw_wall_dist;
 	float					perp_wall_dist;
 	int						line_draw_start;
@@ -235,10 +245,10 @@ typedef struct s_cub_data
 
 typedef struct s_map_params // Specific struct helping for map parsing
 {
-	char **old_map;
-	char *line;
-	int fd;
-	t_cub_data *cub_data;
+	char		**old_map;
+	char		*line;
+	int			fd;
+	t_cub_data	*cub_data;
 }							t_map_params;
 
 typedef struct s_bresenham
@@ -272,7 +282,8 @@ int							render(t_cub_data *cub_data);
 void						raycasting(t_cub_data *data);
 void						put_wall_texture(t_cub_data *data, t_ray_cast *ray);
 void						minimap_frame(t_cub_data *data);
-void						fill_cell(t_cub_data *data, int x, int y, int color);
+void						fill_cell(t_cub_data *data,
+								int x, int y, int color);
 void						move_forward(t_cub_data *data);
 void						move_backward(t_cub_data *data);
 void						move_left(t_cub_data *data);
@@ -308,6 +319,10 @@ void						init_data(struct s_cub_data *cub_data);
 
 //=== Exit messages -------------------------------------------------------===//
 
+void						init_bresenham(t_bresenham *v,
+								int start[2], int end[2]);
+void						plot_line_bresenham(t_cub_data *data,
+								int start[2], int end[2]);
 void						bad_setting_format_error(void);
 void						other_msg(void);
 void						bad_file_extention_msg(void);

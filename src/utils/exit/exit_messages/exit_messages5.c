@@ -1,12 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_messages5.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afarachi <afarachi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 12:24:28 by mjamil            #+#    #+#             */
-/*   Updated: 2025/04/12 12:24:29 by mjamil           ###   ########.fr       */
+/*   Created: 2024/09/30 19:43:54 by afarachi          #+#    #+#             */
+/*   Updated: 2024/10/02 12:13:22 by afarachi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../../includes/cub3D.h"
+
+void	cub_exit_success(void)
+{
+	printf("\033[0;32mCub3D: Program exited successfully.\033[0m\n");
+}

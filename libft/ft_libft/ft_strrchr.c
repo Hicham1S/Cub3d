@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarachi <afarachi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:29:51 by afarachi          #+#    #+#             */
-/*   Updated: 2024/07/30 14:46:11 by afarachi         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:54:06 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strrchr(const char *s, int c)
 	if (c == '\0')
 		return (str++);
 	while (str >= s)
-	{	
+	{
 		if (*str == chr)
 			return (str);
 		str--;

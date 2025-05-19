@@ -6,7 +6,7 @@
 /*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 18:08:59 by hsarraj           #+#    #+#             */
-/*   Updated: 2025/05/18 21:49:40 by mjamil           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:55:11 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,6 @@ typedef struct s_map_params // Specific struct helping for map parsing
 	int			fd;
 	t_cub_data	*cub_data;
 }							t_map_params;
-
 
 //=== Parsing -------------------------------------------------------------===//
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarachi <afarachi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjamil <mjamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:05:14 by afarachi          #+#    #+#             */
-/*   Updated: 2024/10/02 12:46:03 by afarachi         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:56:08 by mjamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  LIBFT_H
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <unistd.h>
